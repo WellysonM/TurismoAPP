@@ -1,0 +1,23 @@
+{
+  "name": "backend-base-app",
+  "version": "0.0.1",
+  "description": "API base para projetos que utilizam autenticação de usuário.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index"
+  },
+  "repository": "https://github.com/andre-violin/backend-base-app",
+  "author": "Andre Violin <andreviolin@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "nodemon": "^1.19.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.5.10"
+  }
+}
