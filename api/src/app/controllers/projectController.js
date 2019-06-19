@@ -2,17 +2,16 @@ const list = (req, res) => {
   res.send({ ok: true, user: req.userId });
 };
 
-const mongoose = require('mongoose');
 
-const Tourism = mongoose.model('Tourism');
+const Tourism = require("../models/Tourism")
 
 module.exports = {
   list,
   async index(req, res) {
     const { page = 1 } = req.query;
-    const tourisms = await Tourism.paginate({}, { page, limit: 10 });
+    const tourism = await Tourism.paginate({}, { page, limit: 10 });
 
-    return res.json(tourisms);
+    return res.json(tourism);
   },
 
   async show(req, res) {

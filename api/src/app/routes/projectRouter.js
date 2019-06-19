@@ -1,17 +1,17 @@
 const express = require("express");
 const authMiddleware = require("../../middlewares/auth");
 
-const ProjectController = require("../controllers/projectController");
+const projectController = require("../controllers/projectController");
 
 const userRouter = express.Router();
 
 userRouter.use(authMiddleware);
 
 //userRouter.get("/", ProjectController.list);
-userRouter.get('/tourism', ProjectController.index);
-userRouter.get('/tourism/:id', ProjectController.show);
-userRouter.post('/tourism', ProjectController.store);
-userRouter.put('/tourism/:id', ProjectController.update);
-userRouter.delete('/tourism/:id', ProjectController.destroy);
+userRouter.get('/tourism', projectController.index);
+userRouter.get('/tourism/:id', projectController.show);
+userRouter.post('/tourism', projectController.store);
+userRouter.put('/tourism/:id', projectController.update);
+userRouter.delete('/tourism/:id', projectController.destroy);
 
 module.exports = userRouter;

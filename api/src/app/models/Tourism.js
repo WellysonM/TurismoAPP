@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("../../database");
 const mongoosePaginate = require('mongoose-paginate');
 var SchemaTypes = mongoose.Schema.Types;
 
@@ -35,4 +35,6 @@ const TourismSchema = new mongoose.Schema({
 
 TourismSchema.plugin(mongoosePaginate);
 
-mongoose.model('Tourism', TourismSchema);
+const Tourism = mongoose.model('Tourism', TourismSchema);
+
+module.exports = Tourism
