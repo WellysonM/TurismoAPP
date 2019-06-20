@@ -1,0 +1,4 @@
+#Wed Jun 19 20:29:12 BRT 2019
+base.0=C\:\\Users\\Edinaldo Araujo\\TurismoAPP\\app\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex

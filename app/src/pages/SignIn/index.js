@@ -38,6 +38,7 @@ export default class SignIn extends Component {
         password
       })
       .then(response => {
+        //this.props.navigation.navigate("home");
         console.warn(response); // redirecionar para a página
       })
       .catch(err => {
@@ -48,9 +49,9 @@ export default class SignIn extends Component {
       });
   };
 
-  toggleSwitch = value => {
-    this.setState({ professor: value });
-  };
+  // toggleSwitch = value => {
+  //   this.setState({ professor: value });
+  // };
 
   render() {
     return (
@@ -65,7 +66,7 @@ export default class SignIn extends Component {
           />
           <Text style={styles.signInTitle}>Login</Text>
 
-          <View style={styles.switchContainer}>
+          {/* <View style={styles.switchContainer}>
             <Text style={styles.textProfessor}>Estudante</Text>
             <Switch
               style={styles.switchProfessor}
@@ -77,9 +78,9 @@ export default class SignIn extends Component {
               value={this.state.professor}
             />
             <Text style={styles.textProfessor}>Professor</Text>
-          </View>
+          </View> */}
 
-          {this.state.professor && (
+          {/* {this.state.professor && (
             <TextInput
               name="nome"
               placeholder="Nome"
@@ -93,7 +94,7 @@ export default class SignIn extends Component {
               underlineColorAndroid="transparent"
               onChangeText={() => {}}
             />
-          )}
+          )} */}
           <TextInput
             name="email"
             placeholder="E-mail"
@@ -123,6 +124,12 @@ export default class SignIn extends Component {
             onPress={this.handleSubmit}
           >
             <Text style={styles.singnInButtonText}>Entrar</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.singnInButton}
+            onPress={this.handleSubmit}
+          >
+            <Text style={styles.singnInButtonText}>Cadastrar</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>
