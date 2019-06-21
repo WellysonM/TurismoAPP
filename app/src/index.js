@@ -1,7 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import SignIn from "./pages/SignIn";
+import Router from "./routes";
+import "./config/StatusBarConfig";
 
-const App = () => <SignIn />;
+const App = () => <Router/>;
 
 export default App;

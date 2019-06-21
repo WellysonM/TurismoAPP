@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 //"mongodb://localhost/baseapi"
-mongoose.connect('mongodb+srv://Naldim:root@cluster-e0qov.gcp.mongodb.net/Projeto-Turismo?retryWrites=true', {
+mongoose.connect('mongodb+srv://Wellyson:root@cluster0-dcmhr.mongodb.net/Tourism?retryWrites=true&w=majority'
+, {
   useCreateIndex: true,
   useNewUrlParser: true
 })

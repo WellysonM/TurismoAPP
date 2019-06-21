@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ImageBackground,
   Image,
+  Alert,
   Switch
 } from "react-native";
 
@@ -14,10 +15,11 @@ import styles from "./styles";
 
 export default class SignIn extends Component {
   state = {
+    name: "",
     email: "",
     emailValid: true,
     password: "",
-    professor: false
+    cadastrar: false
   };
 
   inputValidate = (email, inputType) => {
@@ -38,8 +40,15 @@ export default class SignIn extends Component {
         password
       })
       .then(response => {
-        //this.props.navigation.navigate("home");
-        console.warn(response); // redirecionar para a página
+        Alert.alert(
+          'Sucesso!',
+          `Bem Vindo!`,
+          [
+            { text: 'OK'}
+          ]
+        );
+        this.props.navigation.navigate("Home");
+        //console.warn(response); // redirecionar para a página
       })
       .catch(err => {
         const e = err.response;
@@ -49,9 +58,35 @@ export default class SignIn extends Component {
       });
   };
 
-  // toggleSwitch = value => {
-  //   this.setState({ professor: value });
-  // };
+  handleRegister = async () => {
+    const { name, email, password } = this.state;
+    await api
+      .post("auth/register", {
+        name,
+        email,
+        password
+      })
+      .then(response => {
+        Alert.alert(
+          'Sucesso!',
+          `Cadastro bem sucessido! Sr(a). ${name}`,
+          [
+            { text: 'OK'}
+          ]
+        );
+        //console.warn(response + name + email); // redirecionar para a página
+      })
+      .catch(err => {
+        const e = err.response;
+        if (e.status === 400 && e.data.error === "User not found")
+          this.setState({ emailValid: false });
+        console.warn(err.response); // mostrar qual campo está errado
+      });
+  };
+
+  toggleSwitch = value => {
+    this.setState({ cadastrar: value });
+  };
 
   render() {
     return (
@@ -64,37 +99,42 @@ export default class SignIn extends Component {
             style={styles.logo}
             source={require("../../assets/logo_b.png")}
           />
-          <Text style={styles.signInTitle}>Login</Text>
-
-          {/* <View style={styles.switchContainer}>
-            <Text style={styles.textProfessor}>Estudante</Text>
+          {this.state.cadastrar === false && (
+            <Text style={styles.signInTitle}>Login</Text>
+          )
+          }
+          {this.state.cadastrar && (
+            <Text style={styles.signInTitle}>Register</Text>
+          )
+          }
+          {<View style={styles.switchContainer}>
+            <Text style={styles.textCadastrar}>Entrar</Text>
             <Switch
-              style={styles.switchProfessor}
+              style={styles.switchcadastrar}
               trackColor={{
                 false: "rgba(255, 255, 255, 0.2)",
                 true: "rgba(0, 44, 0, 0.6)"
               }}
               onValueChange={this.toggleSwitch}
-              value={this.state.professor}
+              value={this.state.cadastrar}
             />
-            <Text style={styles.textProfessor}>Professor</Text>
-          </View> */}
+            <Text style={styles.textCadastrar}>Cadastrar</Text>
+          </View>}
 
-          {/* {this.state.professor && (
+          {this.state.cadastrar && (
             <TextInput
-              name="nome"
+              name="name"
               placeholder="Nome"
-              style={[
-                styles.inputText,
-                !this.state.emailValid ? styles.error : null
-              ]}
+              style={[styles.inputText]}
               placeholderTextColor="#999"
               autoCapitalize="none"
               autoCorrect={false}
               underlineColorAndroid="transparent"
-              onChangeText={() => {}}
+              value={this.state.name}
+              onChangeText={text => this.setState({ name: text })}
             />
-          )} */}
+          )
+          }
           <TextInput
             name="email"
             placeholder="E-mail"
@@ -119,18 +159,24 @@ export default class SignIn extends Component {
             secureTextEntry={true}
             onChangeText={password => this.setState({ password })}
           />
-          <TouchableOpacity
-            style={styles.singnInButton}
-            onPress={this.handleSubmit}
-          >
-            <Text style={styles.singnInButtonText}>Entrar</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.singnInButton}
-            onPress={this.handleSubmit}
-          >
-            <Text style={styles.singnInButtonText}>Cadastrar</Text>
-          </TouchableOpacity>
+          {this.state.cadastrar === false && (
+            <TouchableOpacity
+              style={styles.singnInButton}
+              onPress={this.handleSubmit}
+            >
+              <Text style={styles.singnInButtonText}>Entrar</Text>
+            </TouchableOpacity>
+          )
+          }
+          {this.state.cadastrar && (
+            <TouchableOpacity
+              style={styles.singnInButton}
+              onPress={this.handleRegister}
+            >
+              <Text style={styles.singnInButtonText}>Cadastrar</Text>
+            </TouchableOpacity>
+          )
+          }
         </View>
       </ImageBackground>
     );

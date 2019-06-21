@@ -5,8 +5,6 @@ const projectController = require("../controllers/projectController");
 
 const userRouter = express.Router();
 
-userRouter.use(authMiddleware);
-
 //userRouter.get("/", ProjectController.list);
 userRouter.get('/tourism', projectController.index);
 userRouter.get('/tourism/:id', projectController.show);

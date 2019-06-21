@@ -13,13 +13,12 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.6)"
   },
   logo: {
-    marginTop: "10%",
-    marginBottom: 20,
+    marginBottom: 40,
     height: 150,
     width: 150
   },
   signInTitle: {
-    marginBottom: 80,
+    marginBottom: 40,
     fontSize: 24,
     color: "#FFF"
   },
@@ -66,7 +65,7 @@ const styles = StyleSheet.create({
   switchProfessor: {
     // backgroundColor: "rgba(0,0,0,0.8)"
   },
-  textProfessor: {
+  textCadastrar: {
     marginLeft: 15,
     marginRight: 15,
     color: "#fff",
