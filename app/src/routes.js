@@ -2,6 +2,7 @@ import React from "react";
 import {
   createAppContainer,
   createStackNavigator,
+   createBottomTabNavigator
 } from "react-navigation";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons"; // FontAwesome
@@ -20,7 +21,7 @@ const defaultStyle = title => {
   };
 };
 
-const SignInStack = createStackNavigator(
+const SignInStack =  createStackNavigator(
   {
     Home: {
       screen: Home,

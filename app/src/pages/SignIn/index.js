@@ -22,7 +22,7 @@ export default class SignIn extends Component {
     cadastrar: false
   };
 
-  inputValidate = (email, inputType) => {
+  /*inputValidate = (email, inputType) => {
     const validation = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (inputType === "email") {
       validation.test(email)
@@ -30,19 +30,19 @@ export default class SignIn extends Component {
         : this.setState({ emailValid: false });
     }
     if (this.state.emailValid) this.setState({ email });
-  };
+  };*/
 
   handleSubmit = async () => {
-    const { email, password } = this.state;
+    const { name, password } = this.state;
     await api
       .post("auth/authenticate", {
-        email,
+        name,
         password
       })
       .then(response => {
         Alert.alert(
           'Sucesso!',
-          `Bem Vindo!`,
+          `Bem Vindo! Sr(a). ${name}`,
           [
             { text: 'OK'}
           ]
@@ -59,11 +59,10 @@ export default class SignIn extends Component {
   };
 
   handleRegister = async () => {
-    const { name, email, password } = this.state;
+    const { name, password } = this.state;
     await api
       .post("auth/register", {
         name,
-        email,
         password
       })
       .then(response => {
@@ -91,13 +90,13 @@ export default class SignIn extends Component {
   render() {
     return (
       <ImageBackground
-        source={require("../../assets/signInBackground.jpg")}
+        source={require("../../assets/imagem.png")}
         style={styles.imageBackground}
       >
         <View style={styles.form}>
           <Image
             style={styles.logo}
-            source={require("../../assets/logo_b.png")}
+            source={require("../../assets/tourism.png")}
           />
           {this.state.cadastrar === false && (
             <Text style={styles.signInTitle}>Login</Text>
@@ -120,8 +119,6 @@ export default class SignIn extends Component {
             />
             <Text style={styles.textCadastrar}>Cadastrar</Text>
           </View>}
-
-          {this.state.cadastrar && (
             <TextInput
               name="name"
               placeholder="Nome"
@@ -133,21 +130,6 @@ export default class SignIn extends Component {
               value={this.state.name}
               onChangeText={text => this.setState({ name: text })}
             />
-          )
-          }
-          <TextInput
-            name="email"
-            placeholder="E-mail"
-            style={[
-              styles.inputText,
-              !this.state.emailValid ? styles.error : null
-            ]}
-            placeholderTextColor="#999"
-            autoCapitalize="none"
-            autoCorrect={false}
-            underlineColorAndroid="transparent"
-            onChangeText={text => this.inputValidate(text, "email")}
-          />
           <TextInput
             name="password"
             placeholder="Senha"
