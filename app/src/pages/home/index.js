@@ -68,11 +68,6 @@ class Home extends Component {
 					}}>
 					<Text style={styles.singnInButtonText}>Acessar</Text>
 				</TouchableOpacity>
-				{/* <TouchableOpacity style={styles.productButton} onPress={() => {
-						this.props.navigation.navigate("Hyperlink", { hyperlink: item });
-				}}>
-					<Text style={styles.productButtonText}>Acessar</Text>
-				</TouchableOpacity> */}
 			</View>
 		);
 	};
@@ -106,7 +101,10 @@ const HomeStack = createStackNavigator({
 		screen: Home,
 		navigationOptions: () => defaultStyle("Suas Viagens")
 	},
-	Hyperlink: { screen: Hyperlink }
+	Hyperlink: {
+		screen: Hyperlink,
+		navigationOptions: () => defaultStyle("Tire sua foto favorita")
+	}
 });
 const CadastroLinksStack = createStackNavigator({
 	CadastroLinks: {

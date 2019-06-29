@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Alert } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import styles from "./styles"
 
@@ -11,9 +11,16 @@ export default class App extends React.Component {
     const options = {
       noData: true,
     };
-    ImagePicker.showImagePicker(options, response => {
+    ImagePicker.launchCamera(options, response => {
       if (response.uri) {
         this.setState({ photo: response });
+        Alert.alert(
+          'Sucesso!',
+          `A foto foi salva na galeria!`,
+          [
+            { text: 'OK' }
+          ]
+        );
       }
     });
   };
@@ -30,7 +37,7 @@ export default class App extends React.Component {
         <TouchableOpacity
           style={styles.singnInButton}
           onPress={this.photoChose}>
-          <Text style={styles.singnInButtonText}>Escolha sua foto</Text>
+          <Text style={styles.singnInButtonText}>Foto</Text>
         </TouchableOpacity>
       </View>
     );
