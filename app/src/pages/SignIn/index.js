@@ -7,7 +7,8 @@ import {
   ImageBackground,
   Image,
   Alert,
-  Switch
+  Switch,
+  KeyboardAvoidingView
 } from "react-native";
 
 import api from "../../services/api";
@@ -44,7 +45,7 @@ export default class SignIn extends Component {
           'Sucesso!',
           `Bem Vindo! Sr(a). ${name}`,
           [
-            { text: 'OK'}
+            { text: 'OK' }
           ]
         );
         this.props.navigation.navigate("Home");
@@ -70,7 +71,7 @@ export default class SignIn extends Component {
           'Sucesso!',
           `Cadastro bem sucessido! Sr(a). ${name}`,
           [
-            { text: 'OK'}
+            { text: 'OK' }
           ]
         );
         //console.warn(response + name + email); // redirecionar para a página
@@ -93,7 +94,7 @@ export default class SignIn extends Component {
         source={require("../../assets/imagem.png")}
         style={styles.imageBackground}
       >
-        <View style={styles.form}>
+        <KeyboardAvoidingView behavior="padding" style={styles.form}>
           <Image
             style={styles.logo}
             source={require("../../assets/tourism.png")}
@@ -119,17 +120,17 @@ export default class SignIn extends Component {
             />
             <Text style={styles.textCadastrar}>Cadastrar</Text>
           </View>}
-            <TextInput
-              name="name"
-              placeholder="Nome"
-              style={[styles.inputText]}
-              placeholderTextColor="#999"
-              autoCapitalize="none"
-              autoCorrect={false}
-              underlineColorAndroid="transparent"
-              value={this.state.name}
-              onChangeText={text => this.setState({ name: text })}
-            />
+          <TextInput
+            name="name"
+            placeholder="Nome"
+            style={[styles.inputText]}
+            placeholderTextColor="#999"
+            autoCapitalize="none"
+            autoCorrect={false}
+            underlineColorAndroid="transparent"
+            value={this.state.name}
+            onChangeText={text => this.setState({ name: text })}
+          />
           <TextInput
             name="password"
             placeholder="Senha"
@@ -141,6 +142,7 @@ export default class SignIn extends Component {
             secureTextEntry={true}
             onChangeText={password => this.setState({ password })}
           />
+
           {this.state.cadastrar === false && (
             <TouchableOpacity
               style={styles.singnInButton}
@@ -159,7 +161,7 @@ export default class SignIn extends Component {
             </TouchableOpacity>
           )
           }
-        </View>
+        </KeyboardAvoidingView>
       </ImageBackground>
     );
   }

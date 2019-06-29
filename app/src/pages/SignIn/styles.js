@@ -8,8 +8,8 @@ const styles = StyleSheet.create({
   form: {
     flex: 1,
     alignItems: "center",
-    padding: 40,
-    paddingTop: 70,
+    padding: 20,
+    paddingTop: 30,
     backgroundColor: "rgba(0,0,0,0.6)"
   },
   logo: {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, TouchableOpacity, TextInput } from "react-native";
+import { Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView } from "react-native";
 
 import api from "../../services/api";
 import styles from "./styles";
@@ -23,7 +23,7 @@ export default class CadastroLinks extends Component {
       distanceKM: this.state.distanceKM,
       spent: this.state.spent
     });
-    
+
     this.props.navigation.navigate("Home");
   };
 
@@ -31,7 +31,7 @@ export default class CadastroLinks extends Component {
     console.log(this.props);
 
     return (
-      <View style={styles.form}>
+      <KeyboardAvoidingView behavior="position" style={styles.form}>
         <TextInput
           style={styles.inputText}
           placeholder="Cidade"
@@ -104,7 +104,7 @@ export default class CadastroLinks extends Component {
         >
           <Text style={styles.productButtonText}>Salvar</Text>
         </TouchableOpacity>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
